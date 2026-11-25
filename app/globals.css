@@ -1,26 +1,310 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ------------------------------------------------------------------ */
+/*  Nordic Minimal – design tokens                                      */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-paper: #f6f4ef;
+  --color-ink: #1c2321;
+  --color-fjord: #4e6b5c;
+  --color-line: #dad6cc;
+  --color-muted: #5b6360;
+  --color-brand: #930221; /* Heimtun-rød – kun som aksent (logo) */
+  --color-white: #ffffff;
+
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-fjord: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --shadow-*: initial; /* ingen skygger */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    font-weight: 400;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+  }
+  strong,
+  b {
+    font-weight: 500;
+  }
+  ::selection {
+    background: var(--color-fjord);
+    color: var(--color-white);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-fjord);
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------ */
+/*  Typografi                                                           */
+/* ------------------------------------------------------------------ */
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  font-size: clamp(2.5rem, 6.2vw, 5rem);
+}
+@utility display-l {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+}
+@utility display-m {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+}
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+@utility lead {
+  font-size: clamp(1.125rem, 1.6vw, 1.3125rem);
+  line-height: 1.6;
+  color: var(--color-ink);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tekstlenker: 1px understrek som vokser fra venstre, trekkes mot høyre */
+/* ------------------------------------------------------------------ */
+@utility ulink {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+  padding-bottom: 2px;
+  transition: background-size 450ms var(--ease-fjord);
+  &:hover,
+  &:focus-visible,
+  &[aria-current="page"] {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+}
+/* Variant med permanent tynn linje (brødtekst) */
+@utility ulink-rest {
+  background-image: linear-gradient(currentColor, currentColor),
+    linear-gradient(var(--color-line), var(--color-line));
+  background-repeat: no-repeat;
+  background-size: 0% 1px, 100% 1px;
+  background-position: 100% 100%, 0 100%;
+  padding-bottom: 2px;
+  transition: background-size 450ms var(--ease-fjord);
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px, 100% 1px;
+    background-position: 0% 100%, 0 100%;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Knapper                                                             */
+/* ------------------------------------------------------------------ */
+.btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.25rem;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--color-ink);
+  border-radius: 2px;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--color-ink);
+  background: transparent;
+  cursor: pointer;
+  transition: color 450ms var(--ease-fjord), border-color 450ms var(--ease-fjord),
+    transform 150ms var(--ease-fjord);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-fjord);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 500ms var(--ease-fjord);
+}
+.btn .btn-arrow {
+  transition: transform 450ms var(--ease-fjord);
+}
+.btn:hover,
+.btn:focus-visible {
+  color: var(--color-white);
+  border-color: var(--color-fjord);
+}
+.btn:hover::before,
+.btn:focus-visible::before {
+  clip-path: inset(0 0 0 0);
+}
+.btn:hover .btn-arrow,
+.btn:focus-visible .btn-arrow {
+  transform: translateX(4px);
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:focus-visible {
+  outline: 2px solid var(--color-fjord);
+  outline-offset: 3px;
+}
+.btn-solid {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn-light {
+  border-color: var(--color-paper);
+  color: var(--color-paper);
+}
+.btn[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Fjord Line-ikoner: strek tegnes på nytt ved hover                    */
+/* ------------------------------------------------------------------ */
+.fl-icon {
+  stroke: currentColor;
+  transition: color 600ms var(--ease-fjord);
+}
+.fl-icon * {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+@keyframes fl-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.group:hover .fl-icon,
+.group:focus-visible .fl-icon,
+.fl-icon.fl-hover:hover {
+  color: var(--color-fjord);
+}
+.group:hover .fl-icon *,
+.group:focus-visible .fl-icon *,
+.fl-icon.fl-hover:hover * {
+  animation: fl-draw 600ms var(--ease-fjord) both;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Kort / blokker                                                      */
+/* ------------------------------------------------------------------ */
+.card {
+  position: relative;
+  border: 1px solid var(--color-line);
+  border-radius: 2px;
+  background: transparent;
+  transition: transform 450ms var(--ease-fjord), border-color 450ms var(--ease-fjord);
+}
+.card:hover,
+.card:focus-visible,
+.card:focus-within {
+  transform: translateY(-2px);
+  border-color: var(--color-ink);
+}
+.card .card-arrow {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 400ms var(--ease-fjord), transform 450ms var(--ease-fjord);
+}
+.card:hover .card-arrow,
+.card:focus-visible .card-arrow,
+.card:focus-within .card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tekstanimasjon: linje-for-linje med maske                           */
+/* ------------------------------------------------------------------ */
+.rw {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* plass til descendere (g, j, p) uten å endre linjehøyden */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.rw-i {
+  display: inline-block;
+  will-change: transform;
+}
+.js .rw-i {
+  transform: translateY(105%);
+  transition: transform 700ms var(--ease-fjord);
+  transition-delay: calc(var(--line, 0) * 80ms + var(--base, 0ms));
+}
+.js .is-in .rw-i {
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Redusert bevegelse: slå av alt                                      */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js .rw-i {
+    transform: none !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
 }
