@@ -18,7 +18,7 @@ export function EmployeeCard({ person }: { person: Employee }) {
         {person.photo ? (
           <Image src={person.photo} alt={person.name} fill sizes="(min-width: 1024px) 280px, 50vw" className="object-cover" />
         ) : (
-          <div className="absolute inset-0 flex flex-col justify-between p-5" aria-hidden="true">
+          <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-5" aria-hidden="true">
             <FjordIcon name="team" size={24} className="text-muted" />
             <div>
               <span className="block font-display text-[clamp(3rem,6vw,4.5rem)] leading-none tracking-[-0.04em] text-ink/85">
@@ -30,17 +30,17 @@ export function EmployeeCard({ person }: { person: Employee }) {
           </div>
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-3 p-5">
+      <div className="flex flex-1 flex-col gap-3 p-4 sm:p-5">
         <h3 className="font-display text-[1.125rem] leading-snug">{person.name}</h3>
         {person.title ? <p className="-mt-2 text-[0.875rem] text-muted">{person.title}</p> : null}
-        <ul className="mt-auto space-y-1 text-[0.875rem]">
+        <ul className="mt-auto space-y-1 text-[0.8125rem] sm:text-[0.875rem]">
           <li>
             <a href={telHref(person.phone)} className="ulink" aria-label={`Ring ${person.name}, ${person.phone}`}>
               {person.phone}
             </a>
           </li>
-          <li className="break-all">
-            <a href={`mailto:${person.email}`} className="ulink" aria-label={`Send e-post til ${person.name}`}>
+          <li className="[overflow-wrap:anywhere]">
+            <a href={`mailto:${person.email}`} className="ulink" aria-label={`Send e-post til ${person.name}, ${person.email}`}>
               {person.email}
             </a>
           </li>

@@ -45,7 +45,7 @@ export default function TjenesterPage() {
                 key={s.slug}
                 id={s.slug}
                 aria-labelledby={`h-${s.slug}`}
-                className="group scroll-mt-28 border-t border-line pb-16 pt-5 md:pb-20"
+                className="group border-t border-line pb-16 pt-5 md:pb-20"
               >
                 <div className="flex items-baseline justify-between gap-4 text-[0.8125rem] tracking-[0.06em] text-muted">
                   <p>

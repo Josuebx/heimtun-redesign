@@ -25,7 +25,7 @@
     background: var(--color-paper);
     color: var(--color-ink);
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 5rem;
   }
   @media (prefers-reduced-motion: no-preference) {
     html {
@@ -281,6 +281,33 @@
 }
 .js .is-in .rw-i {
   transform: translateY(0);
+}
+/* Toppseksjoner: starter med CSS ved første opptegning (se RevealText `immediate`) */
+@keyframes rw-up {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.js [data-rw-now] .rw-i {
+  transition: none;
+  animation: rw-up 700ms var(--ease-fjord) both;
+  animation-delay: calc(var(--line, 0) * 80ms + var(--base, 0ms));
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-now {
+  animation: fade-up 500ms var(--ease-fjord) both;
 }
 
 /* ------------------------------------------------------------------ */

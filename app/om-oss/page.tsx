@@ -77,7 +77,7 @@ export default function OmOssPage() {
                     <p className="mt-2 text-muted">{item.text}</p>
                   </div>
                   {i === 1 ? (
-                    <div className="mt-auto w-fit border border-line bg-white px-4 py-3">
+                    <div className="mt-auto w-fit shrink-0 border border-line bg-white px-4 py-3">
                       <Image
                         src="/brand/regnskap-norge-medlem.png"
                         alt="Medlem av Regnskap Norge"
@@ -96,7 +96,7 @@ export default function OmOssPage() {
       </section>
 
       {/* 03 — Ansatte */}
-      <section id="ansatte" aria-labelledby="h-ansatte" className="scroll-mt-24 py-16 md:py-24">
+      <section id="ansatte" aria-labelledby="h-ansatte" className="py-16 md:py-24">
         <Container>
           <SectionLabel index={3} label="Ansatte" />
           <div className="mt-10 grid grid-cols-4 gap-x-6 gap-y-6 md:grid-cols-12">

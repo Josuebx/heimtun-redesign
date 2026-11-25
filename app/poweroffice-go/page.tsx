@@ -56,7 +56,7 @@ export default function PowerOfficePage() {
                 </ul>
               </FadeUp>
               <FadeUp className="mt-10 flex items-center gap-5">
-                <div className="border border-line bg-white px-4 py-3">
+                <div className="shrink-0 border border-line bg-white px-4 py-3">
                   <Image
                     src="/brand/poweroffice-logo.jpg"
                     alt="PowerOffice"

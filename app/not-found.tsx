@@ -18,18 +18,18 @@ export default function NotFound() {
     <Container className="pb-24 pt-16 md:pb-32 md:pt-24">
       <div className="grid grid-cols-4 gap-x-6 gap-y-12 md:grid-cols-12">
         <div className="col-span-4 md:col-span-7">
-          <FadeUp className="eyebrow mb-8">{notFound.eyebrow}</FadeUp>
-          <RevealText as="h1" text={notFound.title} className="display-xl max-w-[14ch]" />
-          <FadeUp as="p" delay={200} className="lead mt-8 max-w-[44ch] text-muted">
+          <FadeUp immediate className="eyebrow mb-8">{notFound.eyebrow}</FadeUp>
+          <RevealText immediate as="h1" text={notFound.title} className="display-xl max-w-[14ch]" />
+          <FadeUp immediate as="p" delay={200} className="lead mt-8 max-w-[44ch] text-muted">
             {notFound.lead}
           </FadeUp>
-          <FadeUp delay={300} className="mt-10">
+          <FadeUp immediate delay={300} className="mt-10">
             <Button href="/" variant="solid">
               Til forsiden
             </Button>
           </FadeUp>
         </div>
-        <FadeUp delay={150} className="col-span-4 md:col-span-4 md:col-start-9">
+        <FadeUp immediate delay={150} className="col-span-4 md:col-span-4 md:col-start-9">
           <nav aria-label="Sider">
             <ul className="border-t border-line">
               {footerNav.map((item, i) => (

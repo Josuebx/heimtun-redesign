@@ -25,20 +25,20 @@ export default function HomePage() {
         <div className="grid grid-cols-4 gap-x-6 gap-y-12 md:grid-cols-12">
           <div className="col-span-4 flex flex-col justify-between md:col-span-7">
             <div>
-              <FadeUp className="eyebrow mb-8">{home.hero.eyebrow}</FadeUp>
-              <RevealText as="h1" text={home.hero.title} className="display-xl max-w-[15ch]" />
-              <FadeUp delay={250} className="lead mt-8 max-w-[44ch] text-muted">
+              <FadeUp immediate className="eyebrow mb-8">{home.hero.eyebrow}</FadeUp>
+              <RevealText immediate as="h1" text={home.hero.title} className="display-xl max-w-[15ch]" />
+              <FadeUp immediate delay={250} className="lead mt-8 max-w-[44ch] text-muted">
                 {home.hero.lead}
               </FadeUp>
             </div>
-            <FadeUp delay={350} className="mt-10 flex flex-wrap gap-3">
+            <FadeUp immediate delay={350} className="mt-10 flex flex-wrap gap-3">
               <Button href={home.hero.primary.href} variant="solid">
                 {home.hero.primary.label}
               </Button>
               <Button href={home.hero.secondary.href}>{home.hero.secondary.label}</Button>
             </FadeUp>
           </div>
-          <FadeUp delay={150} className="col-span-4 md:col-span-5">
+          <FadeUp immediate delay={150} className="col-span-4 md:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden bg-line">
               <Image
                 src={home.hero.image.src}

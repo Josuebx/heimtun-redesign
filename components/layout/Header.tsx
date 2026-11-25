@@ -55,7 +55,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-paper/95 backdrop-blur-[2px] transition-[border-color] duration-500 ${
+      className={`sticky top-0 z-50 bg-paper transition-[border-color] duration-500 ${
         scrolled || open ? "border-b border-line" : "border-b border-transparent"
       }`}
     >
