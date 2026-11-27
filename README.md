@@ -14,7 +14,8 @@ npm run build      # produksjonsbygg
 npm run start      # kjør produksjonsbygget
 ```
 
-Deploy: repoet er koblet til Vercel. Hver push gir en ny preview-URL, og `main` blir produksjon.
+Deploy: repoet er koblet til Vercel (team *box-marketing*). Endringer pushes til grenen `preview`, som gir en fast preview-URL:
+`https://heimtun-redesign-git-preview-box-marketing.vercel.app`. `main` er produksjon og oppdateres kun etter godkjenning.
 
 ## Sider
 
